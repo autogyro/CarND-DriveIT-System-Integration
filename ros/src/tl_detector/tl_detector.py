@@ -172,6 +172,15 @@ class TLDetector(object):
             int: ID of traffic light color (specified in styx_msgs/TrafficLight)
 
         """
+        state = self.get_light_state(0)
+        if state == TrafficLight.RED:
+            rospy.loginfo("RED detected")
+        elif state == TrafficLight.YELLOW:
+            rospy.loginfo("YELLOW detected")
+        elif state == TrafficLight.GREEN:
+            rospy.loginfo("GREEN detected")
+        else:
+            rospy.loginfo("NO LIGHT detected")
         # Wait untill we got waypoints
         if self.waypoints is None or self.pose is None:
             return -1, TrafficLight.UNKNOWN
